@@ -1,18 +1,29 @@
 import jwt from 'jsonwebtoken';
+import Admin from '../models/admin.js';
 
-const protect = (req, res, next) => {
-    let token = req.headers.authorization;
-    if (token && token.startsWith('Bearer')) {
+const protect = async (req, res, next) => {
+    let token;
+
+    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
         try {
-            token = token.split(' ')[1];
+            // Get token from header
+            token = req.headers.authorization.split(' ')[1];
+
+            // Verify token
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            req.admin = decoded;
+
+            // Attach admin to the request object (excluding password)
+            req.admin = await Admin.findById(decoded.id).select('-password');
+
             next();
         } catch (error) {
-            return res.status(401).json({ message: 'Not authorized, token failed' });
+            console.error('Token verification failed:', error.message);
+            return res.status(401).json({ success: false, message: 'Not authorized, token failed' });
         }
-    } else {
-        return res.status(401).json({ message: 'No authorization token provided' });
+    }
+
+    if (!token) {
+        return res.status(401).json({ success: false, message: 'Not authorized, no token' });
     }
 };
 

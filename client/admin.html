@@ -1,100 +1,206 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadash Foundation - Admin Dashboard</title>
+    <title>Hadash Empowerment Foundation | Admin CMS</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E53E3E',
+                            redDark: '#C53030',
+                            pink: '#ED64A6',
+                            pinkLight: '#FFF5F7',
+                            pinkHover: '#FBB6CE',
+                            dark: '#111827',
+                            charcoal: '#1F2937',
+                            lightGray: '#F9FAFB'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #E53E3E 0%, #ED64A6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #E53E3E 0%, #ED64A6 100%);
+        }
+        .hero-pattern {
+            background-color: #111827;
+            background-image: radial-gradient(#ED64A6 0.75px, transparent 0.75px), radial-gradient(#E53E3E 0.75px, #111827 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+    </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="font-sans bg-brand-lightGray text-gray-800 antialiased selection:bg-brand-pink selection:text-white min-h-screen flex flex-col justify-between">
 
-    <!-- Navigation Header -->
-    <header class="bg-emerald-700 text-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold">Hadash CMS Dashboard</h1>
-            <button id="logoutBtn" class="hidden bg-emerald-800 px-3 py-1 rounded text-sm hover:bg-emerald-900 transition">Logout</button>
+    <!-- Navbar Header -->
+    <header class="bg-brand-dark text-white border-b border-gray-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-full gradient-bg p-0.5 flex items-center justify-center shadow-md">
+                        <div class="w-full h-full bg-brand-dark rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-heart text-brand-pink text-xs"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-lg font-extrabold tracking-tight text-white block leading-none">HADASH</span>
+                        <span class="text-[10px] font-semibold tracking-wider text-brand-pink uppercase">CMS Admin Portal</span>
+                    </div>
+                </a>
+
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xs text-gray-300 hover:text-white transition flex items-center gap-1">
+                        <i class="fa-solid fa-arrow-left text-[10px]"></i> View Site
+                    </a>
+                    <button id="logoutBtn" class="hidden text-xs bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white border border-red-500/30 px-3 py-1.5 rounded-lg transition font-medium">
+                        <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Main Container -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         
-        <!-- LOGIN SECTION -->
-        <section id="loginSection" class="bg-white p-8 rounded-xl shadow-md max-w-md mx-auto mt-10">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Admin Login</h2>
+        <!-- LOGIN CARD -->
+        <section id="loginSection" class="w-full max-w-md bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+            <div class="text-center mb-8">
+                <div class="w-14 h-14 rounded-2xl bg-brand-pinkLight text-brand-red mx-auto flex items-center justify-center text-xl mb-3 shadow-inner">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h2 class="text-2xl font-extrabold text-brand-dark">Admin Access</h2>
+                <p class="text-xs text-gray-500 mt-1">Log in to publish and manage foundation impact reports.</p>
+            </div>
+
             <form id="loginForm" class="space-y-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <input type="email" id="loginEmail" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="loginEmail" required placeholder="admin@hadashempowerment.org" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink">
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                    <input type="password" id="loginPassword" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+               <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink pr-10">
+                        <button type="button" id="togglePasswordBtn" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none text-sm">
+                            <i class="fa-solid fa-eye" id="togglePasswordIcon"></i>
+                        </button>
+                    </div>
                 </div>
-                <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-lg font-semibold hover:bg-emerald-700 transition">Login</button>
+                <button type="submit" class="w-full gradient-bg text-white font-bold py-3.5 rounded-xl text-sm shadow-md hover:opacity-95 transition-all">
+                    Sign In to Portal
+                </button>
             </form>
-            <p id="loginError" class="text-red-500 text-sm mt-3 text-center hidden"></p>
+            <p id="loginError" class="text-red-500 text-xs mt-4 text-center font-semibold hidden"></p>
         </section>
 
-        <!-- DASHBOARD / POST FORM SECTION (Hidden until logged in) -->
-        <section id="dashboardSection" class="hidden bg-white p-8 rounded-xl shadow-md">
-            <h2 class="text-2xl font-bold mb-6 text-gray-800">Publish School Outreach Report</h2>
-            
-            <form id="outreachForm" class="space-y-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- DASHBOARD PUBLISH FORM (Hidden until logged in) -->
+        <section id="dashboardSection" class="hidden w-full max-w-4xl bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-gray-100">
+            <div class="flex items-center justify-between border-b border-gray-100 pb-6 mb-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-red">CMS Control Panel</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-dark mt-1">Publish School Outreach Report</h2>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-brand-pinkLight text-brand-pink flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+            </div>
+
+            <form id="outreachForm" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Post Title</label>
-                        <input type="text" id="title" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Outreach Title</label>
+                        <input type="text" id="title" required placeholder="e.g. STEM Educational Kit Distribution" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">School Name</label>
-                        <input type="text" id="schoolName" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">School / Community Name</label>
+                        <input type="text" id="schoolName" required placeholder="e.g. L.E.A Primary School" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                        <input type="text" id="location" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Location</label>
+                        <input type="text" id="location" required placeholder="e.g. Kubwa, Abuja" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                        <input type="text" id="category" placeholder="e.g. STEM Workshop" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Category</label>
+                        <select id="category" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink bg-white">
+                            <option value="" disabled selected>Select category</option>
+                            <option value="School Visit">School Visit</option>
+                            <option value="Skill Acquisition">Skill Acquisition</option>
+                            <option value="Community Relief">Community Relief</option>
+                            <option value="Mentorship">Mentorship</option>
+                        </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Students Impacted</label>
-                        <input type="number" id="studentsImpacted" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Students Impacted</label>
+                        <input type="number" id="studentsImpacted" required placeholder="e.g. 150" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink">
                     </div>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Event Date</label>
-                    <input type="date" id="eventDate" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Event Date</label>
+                    <input type="date" id="eventDate" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Short Summary</label>
-                    <textarea id="summary" rows="2" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Short Summary (Featured on homepage card)</label>
+                    <textarea id="summary" rows="2" required placeholder="Brief highlight of the drive..." class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Story</label>
-                    <textarea id="story" rows="4" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Full Story & Event Breakdown</label>
+                    <textarea id="story" rows="4" required placeholder="Detailed account of activities, outcomes, and feedback..." class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-brand-pink"></textarea>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Upload Images (Max 5)</label>
-                    <input type="file" id="images" multiple accept="image/*" class="w-full px-4 py-2 border rounded-lg bg-gray-50">
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Upload Event Photos (Max 5)</label>
+                    <div class="border-2 border-dashed border-gray-200 rounded-2xl p-6 text-center bg-brand-lightGray hover:bg-gray-100 transition cursor-pointer">
+                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-brand-pink mb-2"></i>
+                        <input type="file" id="images" multiple accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-brand-pinkLight file:text-brand-red hover:file:bg-pink-100">
+                    </div>
                 </div>
 
-                <button type="submit" class="w-full bg-emerald-600 text-white py-3 rounded-lg font-semibold hover:bg-emerald-700 transition">Publish Outreach Report</button>
+                <button type="submit" class="w-full gradient-bg text-white font-bold py-4 rounded-xl text-sm shadow-lg hover:opacity-95 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Publish Outreach Report</span>
+                </button>
             </form>
-            <p id="formMessage" class="mt-4 text-center text-sm font-medium hidden"></p>
+            <p id="formMessage" class="mt-4 text-center text-xs font-semibold hidden"></p>
         </section>
 
     </main>
 
-    <!-- Frontend Logic Script -->
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-gray-500 text-xs py-6 border-t border-gray-800 text-center">
+        <p>&copy; 2026 Hadash Empowerment Foundation CMS</p>
+    </footer>
+
+    <!-- Logic Script -->
     <script>
         const loginSection = document.getElementById('loginSection');
         const dashboardSection = document.getElementById('dashboardSection');
@@ -104,7 +210,7 @@
         const outreachForm = document.getElementById('outreachForm');
         const formMessage = document.getElementById('formMessage');
 
-        // Check if already logged in on page load
+        // Verify token state on load
         const token = localStorage.getItem('adminToken');
         if (token) {
             loginSection.classList.add('hidden');
@@ -112,7 +218,24 @@
             logoutBtn.classList.remove('hidden');
         }
 
-        // Handle Login Submission
+
+        // Toggle Admin Password Visibility
+            const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+            const loginPasswordInput = document.getElementById('loginPassword');
+            const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+            if (togglePasswordBtn && loginPasswordInput && togglePasswordIcon) {
+                togglePasswordBtn.addEventListener('click', () => {
+                    const isPassword = loginPasswordInput.type === 'password';
+                    loginPasswordInput.type = isPassword ? 'text' : 'password';
+                    
+                    // Switch FontAwesome eye icon
+                    togglePasswordIcon.classList.toggle('fa-eye', !isPassword);
+                    togglePasswordIcon.classList.toggle('fa-eye-slash', isPassword);
+                });
+            }
+
+        // Login Submission
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             loginError.classList.add('hidden');
@@ -143,13 +266,13 @@
             }
         });
 
-        // Handle Logout
+        // Logout
         logoutBtn.addEventListener('click', () => {
             localStorage.removeItem('adminToken');
             location.reload();
         });
 
-        // Handle Outreach Post & Cloudinary Upload
+        // Publish Outreach
         outreachForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             formMessage.classList.add('hidden');
@@ -180,18 +303,18 @@
                 const data = await res.json();
 
                 if (res.ok && data.success) {
-                    formMessage.textContent = 'School visit report published successfully!';
-                    formMessage.className = 'mt-4 text-center text-sm font-medium text-emerald-600';
+                    formMessage.textContent = 'Outreach report published successfully!';
+                    formMessage.className = 'mt-4 text-center text-xs font-bold text-emerald-600 bg-emerald-50 py-3 rounded-xl border border-emerald-100';
                     formMessage.classList.remove('hidden');
                     outreachForm.reset();
                 } else {
                     formMessage.textContent = data.message || 'Failed to publish post';
-                    formMessage.className = 'mt-4 text-center text-sm font-medium text-red-600';
+                    formMessage.className = 'mt-4 text-center text-xs font-bold text-red-600 bg-red-50 py-3 rounded-xl border border-red-100';
                     formMessage.classList.remove('hidden');
                 }
             } catch (err) {
                 formMessage.textContent = 'Error connecting to server';
-                formMessage.className = 'mt-4 text-center text-sm font-medium text-red-600';
+                formMessage.className = 'mt-4 text-center text-xs font-bold text-red-600 bg-red-50 py-3 rounded-xl border border-red-100';
                 formMessage.classList.remove('hidden');
             }
         });

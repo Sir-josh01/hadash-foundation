@@ -50,7 +50,6 @@
             background-image: radial-gradient(#ED64A6 0.75px, transparent 0.75px), radial-gradient(#E53E3E 0.75px, #111827 0.75px);
             background-size: 30px 30px;
             background-position: 0 0,15px 15px;
-            background-opacity: 0.15;
         }
     </style>
 </head>
@@ -83,6 +82,7 @@
                     <a href="#gallery" class="hover:text-brand-red transition-colors">Outreaches</a>
                     <a href="#get-involved" class="hover:text-brand-red transition-colors">Get Involved</a>
                     <a href="#contact" class="hover:text-brand-red transition-colors">Contact</a>
+                    <a href="admin.html" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-1.5 rounded-lg transition">CMS Admin</a>
                 </nav>
 
                 <!-- Actions -->
@@ -109,6 +109,7 @@
             <a href="#gallery" class="block py-2 text-gray-700 hover:text-brand-red font-medium">Outreaches</a>
             <a href="#get-involved" class="block py-2 text-gray-700 hover:text-brand-red font-medium">Get Involved</a>
             <a href="#contact" class="block py-2 text-gray-700 hover:text-brand-red font-medium">Contact</a>
+            <a href="admin.html" class="block py-2 text-gray-500 hover:text-brand-red font-medium">CMS Admin</a>
             <div class="pt-2 flex flex-col space-y-2">
                 <button onclick="openModal('volunteerModal')" class="w-full text-center py-2.5 font-semibold text-brand-dark border border-gray-300 rounded-lg">
                     Volunteer
@@ -345,20 +346,7 @@
         </div>
     </section>
 
-    <!-- Outreach & School Visits Section -->
-<section class="py-16 px-4 max-w-7xl mx-auto">
-    <div class="text-center mb-12">
-        <h2 class="text-3xl font-extrabold text-gray-900">Recent School Outreaches</h2>
-        <p class="text-sm text-gray-600 mt-2">Catch up on our latest community impact and school visits across Abuja.</p>
-    </div>
-
-    <!-- Dynamic Grid -->
-    <div id="outreachGallery" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- JS will inject outreach cards here automatically -->
-    </div>
-</section>
-
-    <!-- Outreach Gallery Section -->
+    <!-- Dynamic Outreach Gallery Section -->
     <section id="gallery" class="py-20 bg-brand-lightGray">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
@@ -366,55 +354,22 @@
                     <h2 class="text-xs font-bold uppercase tracking-widest text-brand-red mb-2">Our Footprints</h2>
                     <h3 class="text-3xl sm:text-4xl font-extrabold text-brand-dark">Outreach Gallery & Impact</h3>
                 </div>
-                <!-- Gallery Filter Buttons -->
-                <div class="flex space-x-2 mt-4 md:mt-0">
-                    <button onclick="filterGallery('all')" class="gallery-filter bg-brand-dark text-white text-xs font-semibold px-4 py-2 rounded-full">All</button>
-                    <button onclick="filterGallery('school')" class="gallery-filter bg-white text-gray-600 hover:text-brand-dark text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Schools</button>
-                    <button onclick="filterGallery('skills')" class="gallery-filter bg-white text-gray-600 hover:text-brand-dark text-xs font-semibold px-4 py-2 rounded-full border border-gray-200">Skills</button>
-                </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item school bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group">
-                    <div class="relative h-56 bg-gray-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800" alt="School Visit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full">School Visit</span>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-bold text-brand-dark text-base mb-1">Educational Materials Outreach</h4>
-                        <p class="text-xs text-gray-500">Distributing exercise books and stationery kits to primary school pupils.</p>
-                    </div>
-                </div>
+            <!-- Loading Indicator -->
+            <div id="loadingOutreaches" class="text-center py-12 text-gray-500">
+                <i class="fa-solid fa-spinner animate-spin text-2xl text-brand-red mb-2"></i>
+                <p class="text-sm">Loading latest outreach reports...</p>
+            </div>
 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item skills bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group">
-                    <div class="relative h-56 bg-gray-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800" alt="Skill Acquisition" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-pink text-white text-xs font-bold px-3 py-1 rounded-full">Youth Skills</span>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-bold text-brand-dark text-base mb-1">Digital Skills Empowerment</h4>
-                        <p class="text-xs text-gray-500">Interactive computer literacy workshop for underage students.</p>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item school bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group">
-                    <div class="relative h-56 bg-gray-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&q=80&w=800" alt="Community Support" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 left-3 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full">Mentorship</span>
-                    </div>
-                    <div class="p-5">
-                        <h4 class="font-bold text-brand-dark text-base mb-1">Youth Leadership & Life Skills</h4>
-                        <p class="text-xs text-gray-500">Empowering children with essential leadership and values training.</p>
-                    </div>
-                </div>
+            <!-- Dynamic Grid Container -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="outreachGalleryGrid">
+                <!-- JavaScript will inject dynamic backend records here -->
             </div>
         </div>
     </section>
 
-    <!-- Get Involved & Interactive Donation Section -->
+    <!-- Get Involved & Donations Section -->
     <section id="get-involved" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-12 items-center">
@@ -552,157 +507,302 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-brand-dark text-white py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <div class="flex justify-center items-center space-x-3">
-                <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
-                    <i class="fa-solid fa-heart text-white text-xs"></i>
+    <!-- Complete Foundation Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Col 1: About -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full gradient-bg p-0.5 flex items-center justify-center">
+                            <div class="w-full h-full bg-gray-900 rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-heart text-brand-pink text-sm"></i>
+                            </div>
+                        </div>
+                        <span class="text-white font-extrabold tracking-tight text-lg">HADASH</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Dedicated to uplifting underage individuals and less privileged communities through practical skill acquisition, school visits, and structured educational support.
+                    </p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-brand-red text-white flex items-center justify-center transition-colors text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-brand-red text-white flex items-center justify-center transition-colors text-xs"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-brand-red text-white flex items-center justify-center transition-colors text-xs"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 hover:bg-brand-red text-white flex items-center justify-center transition-colors text-xs"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-                <span class="font-extrabold tracking-tight text-lg">HADASH EMPOWERMENT FOUNDATION</span>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h5 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Foundation</a></li>
+                        <li><a href="#pillars" class="hover:text-white transition-colors">Our Focus Pillars</a></li>
+                        <li><a href="#gallery" class="hover:text-white transition-colors">Outreach Gallery</a></li>
+                        <li><a href="#get-involved" class="hover:text-white transition-colors">Support & Donate</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Focus Areas -->
+                <div>
+                    <h5 class="text-white font-bold text-sm uppercase tracking-wider mb-4">Core Focus</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><span class="hover:text-white">School Outreaches & Stationery</span></li>
+                        <li><span class="hover:text-white">Vocational & Digital Literacy</span></li>
+                        <li><span class="hover:text-white">Child Mentorship & Guidance</span></li>
+                        <li><span class="hover:text-white">Community Welfare Support</span></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Newsletter / Location -->
+                <div class="space-y-3">
+                    <h5 class="text-white font-bold text-sm uppercase tracking-wider mb-2">Abuja Operations</h5>
+                    <p class="text-xs text-gray-400">Operating actively within the Federal Capital Territory, Nigeria, bringing sustainable empowerment directly to communities in need.</p>
+                    <div class="pt-2">
+                        <a href="admin.html" class="inline-block bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg text-xs font-semibold transition border border-gray-700">
+                            <i class="fa-solid fa-lock mr-1.5 text-brand-pink"></i> Admin CMS Portal
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p class="text-xs text-gray-400 max-w-md mx-auto">
-                Uplifting underage individuals and communities through skill acquisition, school outreach drives, and sustainable empowerment.
-            </p>
-            <div class="flex justify-center space-x-6 text-gray-400">
-                <a href="#" class="hover:text-brand-pink"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="hover:text-brand-pink"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-brand-pink"><i class="fa-brands fa-twitter"></i></a>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500">
+                <p>&copy; 2026 Hadash Empowerment Foundation. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-gray-400">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-400">Terms of Service</a>
+                </div>
             </div>
-            <p class="text-[11px] text-gray-500 pt-4 border-t border-gray-800">
-                &copy; 2026 Hadash Empowerment Foundation. All Rights Reserved.
-            </p>
         </div>
     </footer>
 
     <!-- Volunteer Modal -->
-    <div id="volunteerModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div id="volunteerModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
-            <button onclick="closeModal('volunteerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                <i class="fa-solid fa-xmark text-xl"></i>
+            <button onclick="closeModal('volunteerModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg">
+                <i class="fa-solid fa-xmark"></i>
             </button>
-            <h3 class="text-xl font-bold text-brand-dark mb-1">Volunteer With Us</h3>
-            <p class="text-xs text-gray-500 mb-4">Join our outreach team in making an impact.</p>
-            
-            <form onsubmit="handleFormSubmit(event, 'Thank you for signing up to volunteer!')" class="space-y-3">
+            <h3 class="text-xl font-bold text-brand-dark mb-2">Volunteer Application</h3>
+            <p class="text-xs text-gray-500 mb-4">Fill out your details to join our next outreach team in Abuja.</p>
+            <form id="volunteerForm" onsubmit="handleVolunteerSubmit(event)" class="space-y-3">
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Full Name</label>
-                    <input type="text" required class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:border-brand-pink">
+                    <input type="text" id="volName" required class="w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:border-brand-pink">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Phone Number</label>
-                    <input type="tel" required class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:border-brand-pink">
+                    <input type="tel" id="volPhone" required class="w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:border-brand-pink">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-gray-700 mb-1">Skill / Interest Area</label>
-                    <select class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:border-brand-pink">
-                        <option>School Teaching / Mentorship</option>
-                        <option>Skill Workshop Facilitation</option>
-                        <option>Outreach Event Logistics</option>
-                        <option>Media & Photography</option>
-                    </select>
+                    <input type="text" id="volSkill" placeholder="e.g. Teaching, Logistics, Media" required class="w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:border-brand-pink">
                 </div>
-                <button type="submit" class="w-full gradient-bg text-white font-bold py-2.5 rounded-lg text-sm shadow">
+                <button type="submit" class="w-full gradient-bg text-white font-bold py-2.5 rounded-xl text-sm shadow-md hover:opacity-95 transition-all mt-2">
                     Submit Application
                 </button>
             </form>
+            <p id="volMessage" class="mt-3 text-center text-xs font-medium hidden"></p>
         </div>
     </div>
 
     <!-- Pledge Notification Modal -->
-    <div id="pledgeModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div id="pledgeModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
-            <button onclick="closeModal('pledgeModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                <i class="fa-solid fa-xmark text-xl"></i>
+            <button onclick="closeModal('pledgeModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-lg">
+                <i class="fa-solid fa-xmark"></i>
             </button>
-            <h3 class="text-xl font-bold text-brand-dark mb-1">Notify Pledge / Transfer</h3>
-            <p class="text-xs text-gray-500 mb-4">Let us know about your donation so we can issue an official acknowledgment.</p>
-            
-            <form onsubmit="handleFormSubmit(event, 'Pledge details submitted! We appreciate your support.')" class="space-y-3">
+            <h3 class="text-xl font-bold text-brand-dark mb-2">Notify Us of Your Donation</h3>
+            <p class="text-xs text-gray-500 mb-4">Please let us know about your bank transfer so we can acknowledge your support.</p>
+            <form onsubmit="handleFormSubmit(event, 'Thank you! We have logged your donation notice.')" class="space-y-3">
                 <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Donor Name</label>
-                    <input type="text" required class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:border-brand-pink">
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Your Name / Donor Name</label>
+                    <input type="text" required class="w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:border-brand-pink">
                 </div>
                 <div>
-                    <label class="block text-xs font-semibold text-gray-700 mb-1">Amount Pledged (₦)</label>
-                    <input type="text" required class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:border-brand-pink">
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Estimated Amount (₦)</label>
+                    <input type="text" required class="w-full px-3 py-2 rounded-lg border text-sm focus:outline-none focus:border-brand-pink">
                 </div>
-                <button type="submit" class="w-full gradient-bg text-white font-bold py-2.5 rounded-lg text-sm shadow">
-                    Submit Notification
+                <button type="submit" class="w-full gradient-bg text-white font-bold py-2.5 rounded-xl text-sm shadow-md hover:opacity-95 transition-all mt-2">
+                    Send Transfer Notice
                 </button>
             </form>
         </div>
     </div>
 
     <!-- JavaScript Interactivity -->
-    <script>
-        // Mobile Menu Toggle
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
+   <script>
+    // Fetch and Render Dynamic Outreaches from Backend API
+    async function loadPublicOutreaches() {
+        const grid = document.getElementById('outreachGalleryGrid');
+        const loader = document.getElementById('loadingOutreaches');
+
+        try {
+            const res = await fetch('/api/outreaches');
+            const outreaches = await res.json();
+
+            if (loader) loader.style.display = 'none';
+
+            if (!outreaches || outreaches.length === 0) {
+                grid.innerHTML = '<p class="text-gray-500 col-span-full text-center py-8">No outreach reports published yet. Check back soon!</p>';
+                return;
+            }
+
+            grid.innerHTML = outreaches.map(post => {
+                const formattedDate = new Date(post.eventDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                const coverImage = post.images && post.images.length > 0 
+                    ? post.images[0] 
+                    : 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=800';
+
+                return `
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col group transition hover:shadow-md">
+                        <div class="relative aspect-video bg-gray-100 overflow-hidden rounded-t-2xl">
+                            <img src="${coverImage}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-brand-red text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">${post.category || 'School Visit'}</span>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-2 font-medium">
+                                <span>📍 ${post.schoolName} (${post.location})</span>
+                                <span>${formattedDate}</span>
+                            </div>
+                            <h4 class="font-bold text-brand-dark text-lg mb-2">${post.title}</h4>
+                            <p class="text-xs text-gray-600 mb-4 flex-grow line-clamp-3">${post.summary}</p>
+                            <div class="pt-4 border-t border-gray-100 flex justify-between items-center text-xs">
+                                <span class="bg-pink-50 text-brand-pink font-bold px-2.5 py-1 rounded-full">👥 ${post.studentsImpacted} Students</span>
+                                <span class="text-brand-red font-semibold">Verified Impact</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+        } catch (err) {
+            if (loader) loader.innerHTML = '<p class="text-red-500 text-sm">Failed to load outreach reports from server.</p>';
+        }
+    }
+
+    // Run fetch on load
+    loadPublicOutreaches();
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn && mobileMenu) {
         menuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+    }
 
-        // About Tabs Switcher
-        function switchTab(tab) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('text-brand-red', 'border-brand-red');
-                el.classList.add('text-gray-500', 'border-transparent');
-            });
+    // About Tabs Switcher
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.tab-btn').forEach(el => {
+            el.classList.remove('text-brand-red', 'border-brand-red');
+            el.classList.add('text-gray-500', 'border-transparent');
+        });
 
-            document.getElementById(`content-${tab}`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`tab-${tab}`);
+        const targetContent = document.getElementById(`content-${tab}`);
+        const activeBtn = document.getElementById(`tab-${tab}`);
+        
+        if (targetContent) targetContent.classList.remove('hidden');
+        if (activeBtn) {
             activeBtn.classList.add('text-brand-red', 'border-brand-red');
             activeBtn.classList.remove('text-gray-500', 'border-transparent');
         }
+    }
 
-        // Gallery Filter
-        function filterGallery(category) {
-            const items = document.querySelectorAll('.gallery-item');
-            items.forEach(item => {
-                if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
+    // Donation Tier Selector
+    function selectTier(btn, amount, impact) {
+        document.querySelectorAll('.tier-btn').forEach(b => {
+            b.classList.remove('border-brand-pink');
+            b.classList.add('border-transparent');
+        });
+        btn.classList.remove('border-transparent');
+        btn.classList.add('border-brand-pink');
+        const impactText = document.getElementById('impactText');
+        if (impactText) impactText.innerText = `Impact: ${impact}`;
+    }
 
-        // Donation Tier Selector
-        function selectTier(btn, amount, impact) {
-            document.querySelectorAll('.tier-btn').forEach(b => {
-                b.classList.remove('border-brand-pink');
-                b.classList.add('border-transparent');
-            });
-            btn.classList.remove('border-transparent');
-            btn.classList.add('border-brand-pink');
-            document.getElementById('impactText').innerText = `Impact: ${impact}`;
-        }
-
-        // Copy Account Number
-        function copyAccount() {
-            const acc = document.getElementById('accountNum').innerText;
+    // Copy Account Number
+    function copyAccount() {
+        const accElement = document.getElementById('accountNum');
+        if (accElement) {
+            const acc = accElement.innerText;
             navigator.clipboard.writeText(acc);
             alert('Account number copied to clipboard!');
         }
+    }
 
-        // Modal Helpers
-        function openModal(id) {
-            document.getElementById(id).classList.remove('hidden');
-        }
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
-        }
+    // Modal Helpers
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) modal.classList.remove('hidden');
+    }
+    function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) modal.classList.add('hidden');
+    }
 
-        // Form Submission Simulation
-        function handleFormSubmit(e, message) {
-            e.preventDefault();
-            alert(message);
-            e.target.reset();
-            const modals = ['volunteerModal', 'pledgeModal'];
-            modals.forEach(id => closeModal(id));
+    // General Form Submission Simulation
+    function handleFormSubmit(e, message) {
+        e.preventDefault();
+        alert(message);
+        e.target.reset();
+        const modals = ['volunteerModal', 'pledgeModal'];
+        modals.forEach(id => closeModal(id));
+    }
+
+    // Handle Volunteer API Form Submission
+    async function handleVolunteerSubmit(e) {
+        e.preventDefault();
+        const msg = document.getElementById('volMessage');
+        if (msg) msg.classList.add('hidden');
+
+        const payload = {
+            fullName: document.getElementById('volName').value,
+            phone: document.getElementById('volPhone').value,
+            skillArea: document.getElementById('volSkill').value
+        };
+
+        try {
+            const res = await fetch('/api/volunteers', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+                if (msg) {
+                    msg.textContent = 'Volunteer application submitted successfully!';
+                    msg.className = 'mt-3 text-center text-xs font-medium text-emerald-600';
+                    msg.classList.remove('hidden');
+                }
+                setTimeout(() => {
+                    closeModal('volunteerModal');
+                    e.target.reset();
+                    if (msg) msg.classList.add('hidden');
+                }, 2000);
+            } else {
+                if (msg) {
+                    msg.textContent = data.message || 'Submission failed';
+                    msg.className = 'mt-3 text-center text-xs font-medium text-red-600';
+                    msg.classList.remove('hidden');
+                }
+            }
+        } catch (err) {
+            if (msg) {
+                msg.textContent = 'Server connection error';
+                msg.className = 'mt-3 text-center text-xs font-medium text-red-600';
+                msg.classList.remove('hidden');
+            }
         }
-    </script>
+    }
+</script>
 </body>
 </html>
